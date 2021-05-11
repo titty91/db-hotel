@@ -1,0 +1,10 @@
+GOAL in foglio di testo, scrivere le query necessarie per rispondere ai seguenti quesiti
+● Selezionare tutti gli ospiti
+● Selezionare tutti gli ospiti con document type = a CI
+● Selezionare i paganti che abbiano un ospite id associato
+● Selezionare tutte le stanze del primo piano
+● Selezionare tutti gli ospiti che iniziano per E
+● Selezionare tutti gli ospiti che abbiano meno di 30 anni
+● Seleziona tutte le prenotazioni precedenti a maggio 2018NOTA ricordo che 
+per eseguire il compito e' necessario il corretto funzionamento di PHPMyAdmin 
+(richiesto per domani) e l'importazione del file db-hotel condiviso alle 11.40

@@ -1,0 +1,70 @@
+● Come si chiamano gli ospiti che hanno fatto più di due prenotazioni: 
+
+	SELECT ospiti.id, ospiti.name, ospiti.lastname , COUNT(*) AS 'prenotazioni'
+	FROM ospiti
+	JOIN prenotazioni_has_ospiti
+   	 ON ospiti.id = prenotazioni_has_ospiti.ospite_id
+	JOIN prenotazioni
+    	ON prenotazioni_has_ospiti.prenotazione_id = prenotazioni.id
+	GROUP BY ospiti.id
+
+
+● Stampare tutti gli ospiti per ogni prenotazione : 
+
+	SELECT prenotazioni_has_ospiti.prenotazione_id, ospiti.name AS 'Nome ospite', ospiti.lastname AS 'Cognome ospite', paganti.name AS 'Nome pagante', paganti.lastname AS 'Nome pagante'
+	FROM ospiti 
+	JOIN prenotazioni_has_ospiti 
+		ON ospiti.id = prenotazioni_has_ospiti.ospite_id 
+	JOIN prenotazioni 
+		ON prenotazioni_has_ospiti.prenotazione_id = prenotazioni.id
+	JOIN pagamenti 
+		ON prenotazioni.id = pagamenti.prenotazione_id
+	JOIN paganti 
+		ON pagamenti.pagante_id = paganti.id;
+
+
+● Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018 : 
+
+
+	SELECT 	ospiti.name AS 'Nome Ospite', ospiti.lastname AS 'Cognome Ospite', 
+		pagamenti.price,
+		paganti.name AS 'Nome pagante', paganti.lastname AS 'Cognome pagante',
+		prenotazioni.created_at as 'prenotazione'
+	FROM ospiti 
+	JOIN prenotazioni_has_ospiti 
+		ON ospiti.id = prenotazioni_has_ospiti.ospite_id 
+	JOIN prenotazioni 
+		ON prenotazioni_has_ospiti.prenotazione_id = prenotazioni.id
+	JOIN pagamenti 
+		ON prenotazioni.id = pagamenti.prenotazione_id
+	JOIN paganti 
+		ON pagamenti.pagante_id = paganti.id
+	WHERE prenotazioni.created_at > '2018-05-01' AND prenotazioni.created_at < '2018-06-01';
+
+
+● Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano : 
+
+
+● Prendi i dati di fatturazione per la prenotazione con id=7 :
+
+
+● Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate):
+
+
+● Conta gli ospiti raggrupandoli per anno di nascita: 
+
+	SELECT YEAR(date_of_birth), COUNT(ospiti.id)
+	FROM ospiti
+	GROUP BY YEAR(date_of_birth);
+
+
+● Somma i prezzi dei pagamenti raggrupandoli per status : 
+
+
+● Conta quante volte è stata prenotata ogni stanza : 
+
+
+● Fai una analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti : 
+
+
+● Quante prenotazioni ha fatto l'ospite che ha fatto più prenotazioni? (quante, non chi!) :

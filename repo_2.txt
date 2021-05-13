@@ -7,6 +7,8 @@
 	JOIN prenotazioni
     	ON prenotazioni_has_ospiti.prenotazione_id = prenotazioni.id
 	GROUP BY ospiti.id
+	
+
 
 
 ● Stampare tutti gli ospiti per ogni prenotazione : 
@@ -20,7 +22,8 @@
 	JOIN pagamenti 
 		ON prenotazioni.id = pagamenti.prenotazione_id
 	JOIN paganti 
-		ON pagamenti.pagante_id = paganti.id;
+		ON pagamenti.pagante_id = paganti_id
+
 
 
 ● Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018 : 

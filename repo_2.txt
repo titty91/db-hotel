@@ -68,7 +68,12 @@
 
 
 ● Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate):
-
+	
+	SELECT stanze.id
+	FROM prenotazioni
+	RIGHT JOIN stanze 
+		ON prenotazioni.stanza_id = stanze.id
+	WHERE prenotazioni.stanza_id IS NULL;
 
 ● Conta gli ospiti raggrupandoli per anno di nascita: 
 
@@ -79,11 +84,28 @@
 
 ● Somma i prezzi dei pagamenti raggrupandoli per status : 
 
+	SELECT pagamenti.status, SUM(pagamenti.price)
+	FROM pagamenti
+	GROUP BY pagamenti.status;
+
 
 ● Conta quante volte è stata prenotata ogni stanza : 
 
+	SELECT prenotazioni.stanza_id, COUNT(prenotazioni.stanza_id)
+	FROM prenotazioni
+	GROUP BY prenotazioni.stanza_id;
 
 ● Fai una analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti : 
 
+	SELECT HOUR(prenotazioni.created_at), COUNT(prenotazioni.id)
+	FROM prenotazioni
+	GROUP BY HOUR(prenotazioni.created_at)
+	ORDER BY COUNT(prenotazioni.id) DESC;
 
 ● Quante prenotazioni ha fatto l'ospite che ha fatto più prenotazioni? (quante, non chi!) :
+
+	SELECT COUNT(prenotazioni_has_ospiti.ospite_id) as 'max_prenotazioni'
+	FROM prenotazioni_has_ospiti
+	GROUP BY prenotazioni_has_ospiti.ospite_id
+	ORDER BY COUNT(prenotazioni_has_ospiti.ospite_id) desc
+	LIMIT 1
